@@ -56,4 +56,29 @@ const headers = { Authorization: token, sign, t, nonce };
 
 ### 振り返り
 
-（Step 完了後に追記）
+#### できたこと
+
+- `import.meta.env` で環境変数を読み込む仕組みを理解し、`VITE_` プレフィックスが必要な理由を把握した
+- `crypto-js` を使った HMAC-SHA256 + Base64 署名生成を自力で実装した
+- `generateSignature` と `switchBotFetch` に責務を分けて設計できた（後の Phase のインフラ層に繋がる構成）
+- Vue Router の導入手順（`router/index.ts` → `main.ts` → `App.vue`）を一通り理解した
+- `<script setup>` のトップレベル `await` が `async setup()` 扱いになり Suspense が必要になる問題を踏み、`onMounted(async () => ...)` が正しいパターンだと学んだ
+
+#### つまずいた点
+
+- `CryptoJS` の使い方（特に `.toString()` 引数なしが Hex になる点）
+- カスタム型を `fetch` の `headers` に渡せなかった問題（`fetch` は `Record<string, string>` 相当を期待するため）
+- Vue Router の 3 点セット（`router/index.ts` + `main.ts` + `App.vue`）の繋ぎ方
+
+#### 発見した問題と方針
+
+- フロントエンドに secret を置く設計はセキュリティ上問題があることを認識した
+- ブラウザから直接 SwitchBot API を fetch すると CORS preflight（OPTIONS）が 404 になり通らないことを確認した
+- Shell スクリプト（curl）では同エンドポイントで正常にレスポンスを取得できることも確認した
+- → Phase 3 Step 10（`SwitchBotApiRepository` 実装）のタイミングで、BFF（簡易 Express サーバ）を構築して CORS 問題を解決する方針とした
+
+#### 次の Step との接続
+
+Step 2 では `ref` / `reactive` / `v-for` を使って、デバイス一覧の取得・表示に取り組む。  
+CORS の関係でブラウザから実 API は叩けないため、Step 2 ではハードコードした Mock データを使って UI を先に作る。  
+実 API との接続は Phase 3 以降で改めて組み立てる。
