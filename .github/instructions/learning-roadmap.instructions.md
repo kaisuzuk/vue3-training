@@ -26,12 +26,12 @@ description: "Use when discussing learning roadmap, phase progression, step assi
 
 ### Phase 3 — ユースケース層 + Repository
 
-| Step | 課題                                                   | 学ぶこと                                         |
-| ---- | ------------------------------------------------------ | ------------------------------------------------ |
-| 9    | DeviceRepository Interface の定義                      | 依存性逆転の原則（DIP）, ポートとアダプター      |
-| 10   | SwitchBotApiRepository の実装                          | インフラ層, アダプター実装, API レスポンスの変換 |
-| 11   | UseCase 層（GetDevices, GetDeviceStatus, SendCommand） | UseCase 単一責務, 入出力の型定義                 |
-| 12   | MockRepository + InMemoryRepository の実装             | テスタビリティ, API なしでの開発                 |
+| Step | 課題                                                   | 学ぶこと                                                                             |
+| ---- | ------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| 9    | DeviceRepository Interface の定義                      | 依存性逆転の原則（DIP）, ポートとアダプター                                          |
+| 10   | SwitchBotApiRepository の実装 + BFF（簡易サーバ）構築  | インフラ層, アダプター実装, API レスポンスの変換, CORS 対策, Express, Vite dev proxy |
+| 11   | UseCase 層（GetDevices, GetDeviceStatus, SendCommand） | UseCase 単一責務, 入出力の型定義                                                     |
+| 12   | MockRepository + InMemoryRepository の実装             | テスタビリティ, API なしでの開発                                                     |
 
 ### Phase 4 — UI 層の洗練
 
