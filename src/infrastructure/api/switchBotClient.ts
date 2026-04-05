@@ -9,12 +9,12 @@ export async function switchBotFetch(url: string) {
   const t: EpochTimeStamp = Date.now()
   const nonce = crypto.randomUUID()
   const token = import.meta.env.VITE_SWITCHBOT_TOKEN
-  const signeture = generateSignature(token, t, nonce)
+  const signature = generateSignature(token, t, nonce)
 
   return await fetch(url, {
     headers: {
       "Authorization": token,
-      "sign": signeture.toString(),
+      "sign": signature.toString(CryptoJS.enc.Base64),
       "t": t.toString(),
       "nonce": nonce,
       "Content-Type": "application/json"

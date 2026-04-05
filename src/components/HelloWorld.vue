@@ -2,8 +2,10 @@
 import { onMounted } from 'vue';
 import { switchBotFetch } from '../infrastructure/api/switchBotClient'
 
+const API_BASE = "https://api.switch-bot.com/v1.1"
+
 onMounted(async () => {
-	await switchBotFetch('https://www.example.com')
+	await switchBotFetch(`${API_BASE}/devices`)
 })
 </script>
 
